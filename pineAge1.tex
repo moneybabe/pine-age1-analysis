@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage{amsfonts, amsmath, amssymb, amsthm} % Math notations imported
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\usepackage{sistyle}
+\SIthousandsep{,}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+
+% title information
+\title{Pine Age 1 Reward Analysis}
+\author{Neo Lee}
+\date{02/19/2023}
+
+% main content
+\begin{document} 
+
+% placing title information; comment out if using fancyhdr
+\maketitle 
+
+\section*{Introduction}
+This paper aims to analyze a game that is often implemented as a reward system and try to find out the best strategy to maximize the reward.
+The rules are as follow:
+
+\begin{enumerate}
+    \item 
+    There are in total 12 rounds, and at the end of each round, $\num{250000}$ tokens $(T)$ will be distributed to the players.
+
+    \item
+    In each round, all players will bet a certain amount of $T$ into a pool that is independent of the $\num{250000}T$ pool. 
+    All the betted $T$ by players are unredeemable. 
+
+    \item
+    The amount of $T$ that each participant receives at the end of each round is proportional to the amount that they betted in the pool. 
+    For example, if player 1 betted $10T$ while others betted $40T$ in total, player 1 will receive $\frac{10}{10+40}=\frac{1}{5}$ of the $\num{250000}T$, which is $\num{50000}T$.
+
+    \item 
+    The invested pool is cumulative. For example, if player 1 betted $10T$ and others betted $40T$ in first round, then player 1 betted $20T$ and others betted $20T$ in second round, player 1 will receive $\frac{1}{5}$ of $\num{250000}T$ in first round and $\frac{10+20}{10+40+20+20}=\frac{1}{3}$ of $\num{250000}T$ in second round.
+
+    \item
+    The reward that a player receive at the end of $i$-th round can be formulated as follow: 
+    \begin{align}
+        T_{i,reward} = \frac{\sum_{k=1}^{i}T_{k,betted}}{\sum_{k=1}^{i}T_{k,total}}
+    \end{align}
+\end{enumerate}
+
+\section*{Tentative Analysis (Aggresive Player)}
+We can categorize all players into two groups.
+The first group of players start playing since the first round, while the second group do not join the first round.
+
+Since the game is cumulative, it is natural for the players from first group to bet all their $T$ in first round. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Assumptions (Conservative Player)}
+\begin{enumerate}
+    \item The game will be analyzed from My perspective as one of the player.
+    
+    \item The price of $T$ is constant throughout the entire event. 
+    Therefore, we will use $T$ as the unit of account for this paper.
+
+    \item I and every player never want a loss by the end of $i$th epoch.
+    
+    \item I and every player always want to maximize their $T_{reward}$ for each epoch.
+    
+    \item Let $mb$ be my bet, $tb$ be total bet, $ob$ be others' bet.
+\end{enumerate}
+
+\section*{First Epoch}
+Assume there are more than one player in this game, then $T_{tb} > T_{mb}$. 
+Therefore, to maximize $T_{reward}$, it is natural for me and every player to burn more $T$ to increase $T_{mb}$ thus $\frac{T_{mb}}{T_{tb}}$.
+
+For me to not suffer a loss by the end of the first epoch, it means 
+\begin{align}
+    T_{reward} = \num{250000} \times \frac{T_{mb}}{T_{tb}} & \ge T_{mb} \\
+    \frac{\num{250000}}{T_{tb}} & \ge 1
+\end{align}
+
+Since me and every player always wants to burn more $T$, $T_{tb}$ will continue to rise until it converges to $\num{250000}$.
+Therefore, we can assume that $T_{1,tb} = \num{250000}$ and $T_{mb} = \num{250000} - T_{ob}$.
+
+\section*{Second Epoch}
+To not suffer a loss by the end of the second epoch, it means 
+\begin{align}
+    \num{250000} \times \frac{T_{1,mb}}{T_{1,tb}} + \num{250000} \times \frac{T_{1,mb} + T_{2,mb}}{T_{1,tb} + T_{2,tb}} & \ge T_{1,mb} + T_{2,mb} \\
+    T_{1,mb} + \num{250000} \times \frac{T_{1,mb} + T_{2,mb}}{\num{250000} + T_{2,tb}} & \ge T_{1,mb} + T_{2,mb} \\
+    \num{250000} \times \frac{T_{1,mb} + T_{2,mb}}{\num{250000} + T_{2,tb}} & \ge T_{2,mb} \\
+    \num{250000} \times T_{1,mb} + \num{250000} \times T_{2,mb} & \ge \num{250000} \times T_{2,mb} + T_{2,mb} \times T_{2,tb} \\
+    T_{2,mb} & \le \frac{\num{250000} \times T_{1,mb}}{T_{2,tb}} \\
+    T_{2,mb} & \le \frac{\num{250000} \times T_{1,mb}}{T_{2,mb} + T_{ob}} \\
+    (T_{2,mb})^2 + T_{2,ob} \times T_{2,mb} -\num{250000} \times T_{1,mb} & \le 0
+\end{align}
+
+
+\end{document}
