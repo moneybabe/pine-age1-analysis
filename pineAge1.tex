@@ -10,7 +10,7 @@
 \newtheorem{cor}[thm]{Corollary}
 
 % title information
-\title{Pine Age 1 Reward Analysis}
+\title{Pine Age 1 Analysis}
 \author{Neo Lee}
 \date{02/19/2023}
 
@@ -37,13 +37,25 @@ The rules are as follow:
     For example, if player 1 betted $10T$ while others betted $40T$ in total, player 1 will receive $\frac{10}{10+40}=\frac{1}{5}$ of the $\num{250000}T$, which is $\num{50000}T$.
 
     \item 
-    The invested pool is cumulative. For example, if player 1 betted $10T$ and others betted $40T$ in first round, then player 1 betted $20T$ and others betted $20T$ in second round, player 1 will receive $\frac{1}{5}$ of $\num{250000}T$ in first round and $\frac{10+20}{10+40+20+20}=\frac{1}{3}$ of $\num{250000}T$ in second round.
+    The betting pool is cumulative. For example, if player 1 betted $10T$ and others betted $40T$ in first round, then player 1 betted $20T$ and others betted $20T$ in second round, player 1 will receive $\frac{1}{5}$ of $\num{250000}T$ in first round and $\frac{10+20}{10+40+20+20}=\frac{1}{3}$ of $\num{250000}T$ in second round.
 
     \item
-    The reward that a player receive at the end of $i$-th round can be formulated as follow: 
+    The reward that a player receives at the end of $i$-th round can be formulated as:
     \begin{align}
-        T_{i,reward} = \frac{\sum_{k=1}^{i}T_{k,betted}}{\sum_{k=1}^{i}T_{k,total}}
+        T_{i,reward} = \num{250000}\times \frac{\sum_{k=1}^{i}T_{k,player \text{ }bet}}{\sum_{k=1}^{i}T_{k,total \text{ }bet}}.
     \end{align}
+
+    The total reward can be formulated as:
+    \begin{align}
+        T_{total \text{ }reward} = \num{250000}\times \sum_{n=1}^{12}\frac{\sum_{k=1}^{k=n}T_{k,player \text{ }bet}}{\sum_{k=1}^{k=n}T_{k,total \text{ }bet}}.
+    \end{align}
+\end{enumerate}
+
+\section*{Objectives}
+This section defines the criteria for the "best" strategy. 
+A good strategy should follow the criteria:
+\begin{enumerate}
+    \item Maximizes $T_{total \text{ }reward}$.
 \end{enumerate}
 
 \section*{Tentative Analysis (Aggresive Player)}
@@ -51,66 +63,6 @@ We can categorize all players into two groups.
 The first group of players start playing since the first round, while the second group do not join the first round.
 
 Since the game is cumulative, it is natural for the players from first group to bet all their $T$ in first round. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 \section*{Assumptions (Conservative Player)}
 \begin{enumerate}
