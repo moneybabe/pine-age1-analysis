@@ -57,7 +57,14 @@ The rules are as follow:
 This section defines the criteria for the "best" strategy. 
 A good strategy should follow the criteria:
 \begin{enumerate}
-    \item Maximizes $T_{total \text{ }profit}$. 
+    \item Maximizes $T_{total \text{ }profit}$ / Minimizes $T_{total \text{ }loss}$. 
+\end{enumerate}
+
+\section*{Possible Approaches}
+\begin{enumerate}
+    \item Model the game with Monte Carlo method.
+    \item Model the game with recurrence equation and optimize each round's bet.
+    \item Model the game with multi-variable equation and optimize with gradient descent.
 \end{enumerate}
 
 \section*{Tentative Analysis (Aggresive Player)}
