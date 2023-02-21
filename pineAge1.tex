@@ -40,22 +40,24 @@ The rules are as follow:
     The betting pool is cumulative. For example, if player 1 betted $10T$ and others betted $40T$ in first round, then player 1 betted $20T$ and others betted $20T$ in second round, player 1 will receive $\frac{1}{5}$ of $\num{250000}T$ in first round and $\frac{10+20}{10+40+20+20}=\frac{1}{3}$ of $\num{250000}T$ in second round.
 
     \item
-    The reward that a player receives at the end of $i$-th round can be formulated as:
+    The profit that a player gains at the end of $i$-th round can be formulated as:
     \begin{align}
-        T_{i,reward} = \num{250000}\times \frac{\sum_{k=1}^{i}T_{k,player \text{ }bet}}{\sum_{k=1}^{i}T_{k,total \text{ }bet}}.
+        T_{i,profit} & = \num{250000}\times \frac{\sum_{k=1}^{i}T_{k,player \text{ }bet}}{\sum_{k=1}^{i}T_{k,total \text{ }bet}}-\sum_{k=1}^{i}T_{k,player \text{ }bet} \\
+        & = \sum_{k=1}^{i}T_{k,player \text{ }bet} \times \left(\frac{\num{250000}}{\sum_{k=1}^{i}T_{k,total \text{ }bet}}-1\right).
     \end{align}
 
-    The total reward can be formulated as:
+    The total profit can be formulated as:
     \begin{align}
-        T_{total \text{ }reward} = \num{250000}\times \sum_{n=1}^{12}\frac{\sum_{k=1}^{k=n}T_{k,player \text{ }bet}}{\sum_{k=1}^{k=n}T_{k,total \text{ }bet}}.
+        T_{total \text{ }profit} = \sum_{n=1}^{12}\sum_{k=1}^{n}T_{k,player \text{ }bet} \times \left(\frac{\num{250000}}{\sum_{k=1}^{i}T_{k,total \text{ }bet}}-1\right).
     \end{align}
+    
 \end{enumerate}
 
 \section*{Objectives}
 This section defines the criteria for the "best" strategy. 
 A good strategy should follow the criteria:
 \begin{enumerate}
-    \item Maximizes $T_{total \text{ }reward}$.
+    \item Maximizes $T_{total \text{ }profit}$. 
 \end{enumerate}
 
 \section*{Tentative Analysis (Aggresive Player)}
